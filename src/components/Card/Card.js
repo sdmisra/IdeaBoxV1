@@ -6,7 +6,7 @@ import './Card.css';
       <div className='card'>
         <h3>{title}</h3>
         <p>{description}</p>
-        <button onClick={()=> deleteIdea(id)}>🗑</button>
+        <button onClick={()=> deleteIdea(id)}>&times;</button>
       </div>
     )
   }
