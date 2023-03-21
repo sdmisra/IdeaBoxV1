@@ -1,5 +1,15 @@
 .card {
+  background-color:rgba(102, 51, 153, 0.314);
   box-sizing: border-box;
-  border: 3px solid black;
+  box-shadow: 5px 10px;
+  border: 3px solid rgba(112, 128, 144, 0.673);
+  border-radius: 3px;
   padding: 10px;
+  opacity: .7
+}
+.card:hover {
+  opacity:.9
+}
+.card > button:hover {
+  background-color:rgba(240, 150, 93, 0.736);
 }
