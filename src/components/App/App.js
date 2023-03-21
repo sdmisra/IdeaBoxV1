@@ -2,24 +2,37 @@ import './App.css';
 import React, { Component } from 'react';
 import Ideas from '../Ideas/Ideas';
 import Form from '../Form/Form'
-import ideasData from './ideasData'
+// import ideasData from './ideasData'
+// import fetchIdeas from './apiCalls';
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      ideas: ideasData
+      ideas: []
     }
   }
 
   addIdea = (newIdea) => {
     this.setState({ ideas: [...this.state.ideas, newIdea] });
+    
+  }
+
+  componentDidMount() {
+    this.fetchIdeas()
   }
 
   deleteIdea = (id) => {
     console.log(id);
     const filteredIdeas = this.state.ideas.filter(idea => idea.id != id);
     this.setState({ ideas: filteredIdeas });
+  }
+
+  fetchIdeas = () => {
+    fetch('http://localhost:3001/api/v1/ideas')
+          .then((response)=> response.json())
+          .then((apiData)=> this.setState({ideas: apiData}))
+          .catch(error => console.log(`issue with: ${error}`))
   }
 
   render() {
@@ -35,4 +48,3 @@ class App extends Component {
 }
 
 export default App;
-
