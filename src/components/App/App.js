@@ -12,19 +12,19 @@ class App extends Component {
       ideas: []
     }
   }
+    componentDidMount() {
+      this.fetchIdeas()
+    }
 
   addIdea = (newIdea) => {
     this.setState({ ideas: [...this.state.ideas, newIdea] });
-  }
-
-  componentDidMount() {
-    this.fetchIdeas()
+    this.postFetchIdea(newIdea)
   }
 
   deleteIdea = (id) => {
-    console.log(id);
     const filteredIdeas = this.state.ideas.filter(idea => idea.id != id);
     this.setState({ ideas: filteredIdeas });
+    this.postDeleteIdea(id)
   }
 
   fetchIdeas = () => {
@@ -32,6 +32,35 @@ class App extends Component {
           .then((response)=> response.json())
           .then((apiData)=> this.setState({ideas: apiData}))
           .catch(error => console.log(`issue with: ${error}`))
+  }
+
+  postFetchIdea = (objToPost) => {
+    fetch('http://localhost:3001/api/v1/ideas',
+      {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(objToPost)
+      })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status)
+      }
+      else console.log('POST Success:', response)
+    })
+    .catch(error => console.log('POST Error:', error))
+  }
+
+  postDeleteIdea = (idToDelete) => {
+    fetch(`http://localhost:3001/api/v1/ideas/${idToDelete}`, {method: 'DELETE'})
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.status)
+      }
+      else console.log('DELETE Success:', response)
+    })
+    .catch(error => console.log('DELETE Error:', error))
   }
 
   render() {
