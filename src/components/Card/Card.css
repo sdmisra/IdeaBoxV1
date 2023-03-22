@@ -1,15 +1,31 @@
 .card {
   background-color:rgba(102, 51, 153, 0.314);
   box-sizing: border-box;
-  box-shadow: 5px 10px;
-  border: 3px solid rgba(112, 128, 144, 0.673);
-  border-radius: 3px;
+  box-shadow: 9px 10px;
+  border: 2px solid rgba(173, 200, 228, 0.806);
+  border-radius: 5px;
   padding: 10px;
-  opacity: .7
+  opacity: .65
 }
 .card:hover {
-  opacity:.9
+  opacity:.9;
+  background-color:rgba(230, 224, 236, 0.939);
+  border: 2px solid rgb(200, 217, 235);
+  animation: breathe 4s ease;
 }
+
+@keyframes breathe {
+  0% {
+    transform: scale(1 , 1)
+  }
+  50% {
+    transform: scale(1.06, 1.06)
+  }
+  100% {
+    transform: scale(1, 1)
+  }
+}
+
 .card > button:hover {
   background-color:rgba(240, 150, 93, 0.736);
 }

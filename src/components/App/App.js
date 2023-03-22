@@ -15,7 +15,6 @@ class App extends Component {
 
   addIdea = (newIdea) => {
     this.setState({ ideas: [...this.state.ideas, newIdea] });
-    
   }
 
   componentDidMount() {
@@ -37,9 +36,9 @@ class App extends Component {
 
   render() {
     return ( 
-      <main className="App">
-        <h1>IdeaBox</h1>
-        {!this.state.ideas.length && <h2>No ideas yet -- add some!</h2> }
+      <main className="app">
+        <h1 className="app-title">Shane Misra's Ideation Station:</h1>
+        {!this.state.ideas.length && <h2>No ideas yet -- add some!</h2>}
         <Ideas ideas={this.state.ideas} deleteIdea={this.deleteIdea}/>
         <Form addIdea={this.addIdea}/>
       </main>
